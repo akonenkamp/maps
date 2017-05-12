@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
- <head>
- <title>places I frequent</title>
- </head>
- <body>
- <form>
-   <label for="places">Pick a place</label>
-   <select id="places" name="places">
-    <option value="Select">Pick One</option>
-    <option value="crossfit">Crossfit Phinney Ridge</option>
-    <option value="vworld">Vertical World</option>
-   </select>
-   
-   
- </form>
- </body> 
-  
+  <head>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <script src="../jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    
+    <button id="google-map" style="padding:10px; cursor:pointer;">whatever</button>
+    
+
+    
+
+    
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb4QVnnP4O6ifTFP7EMeJ79N0Lc-QncrY&callback=initMap">
+    </script>
+    
+  </body>
 </html>
