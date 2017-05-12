@@ -44,7 +44,7 @@ function createMarkers() {
 	});
 }
 
-$('#locals').on('change', changeCenter);
+$ ("#local").on('change', changeCenter);
 
 function changeCenter() {
 	var place = $(this).val();
