@@ -1,55 +1,61 @@
+var locations = [
+ {
+     "name": "Louvre",
+     "lat": 48.8606,
+     "lng": 2.3376,
+     "zoom": 12
+ },
+ {
+     "name": "Smithsonian",
+     "lat": 38.8860,
+     "lng": 77.0213,
+     "zoom": 12
+ },
+ {
+     "name": "London Bridge",
+     "lat": 33.9304,
+     "lng": 84.3733,
+     "zoom": 12
+ }];
+
+var map;
+
 function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
+       map = new google.maps.Map($('#map')[0], {
+        center: {lat: 33.926188, lng: -84.391968},    
+        zoom: 4
         });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
+        createMarkers();
       }
 
-//function initialize () {
-//  var markers ={
-//    "title": "paris",
-//    "lat" : 48.1351,
-//    "lng" : 11.5820,
-//    "description" : "paris"
-//  }
-//  var mapOption {
-//  center: new google.maps.latlng(11.44, 78.79),
-//    zoom: 5,
-//      mapTapId: google.maps.MapTypeId.ROADMAP
-//};
-//  var map = new google.Map(document.getElementById('map'), mapOption);
-//  for(i = 0; i < markers.length; i++) {
-//    var data = markers [i]
-//    var mylatlng = new google.maps.Latlng(data.lat, data.lng);
-//    var markers = new google.maps.Markers{(
-//     position : mylatlng,
-//     map : map,
-//     title : data.title
-//    )};
-//    
-//  (function (marker, data){
-//    google.maps.Event.addListener(marker, "clicl", function (e) {
-//      infoWindow.setContent(data.description);
-//      infoWindow.open(map, marker);
-//    });
-//                                
-//  })(marker, data);
-//    
-//  }
-//    };
+function createMarkers() {
+	$.each(locations, function (index, value) {
+		var marker = new google.maps.Marker({
+        	position: { lat: value.lat, lng: value.lng }});
+		
+		marker.setMap(map);
 
+		var infoWindow = new google.maps.InfoWindow({
+        	content: value.name });
+	
+		marker.addListener( 'click', function( ) {
+        	infoWindow.open( map, marker );
+        });
+	});
+}
 
+$('#locals').on('change', changeCenter);
 
-var googleMap = new google.maps.Map( $('#google-map')[0]);
-googleMap.setCenter( { lat: 47.6205, lng: -122.3493 } );
-googleMap.setZoom( 25 );
+function changeCenter() {
+	var place = $(this).val();
+	var location = $.grep(locations, function (n, i) {
+		return n.name == place;
+	})[0];
 
-
-
-
+	if(location) {
+        map.setCenter({lat: location.lat, lng: location.lng});
+		map.setZoom(location.zoom);	
+	}
+	
+}
 
