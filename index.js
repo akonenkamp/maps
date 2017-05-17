@@ -8,7 +8,7 @@ var locations = [
  {
      "name": "Smithsonian",
      "lat": 38.8860,
-     "lng": 77.0213,
+     "lng": -77.0213,
      "zoom": 12
  },
  {
